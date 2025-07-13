@@ -198,3 +198,5 @@ Tras ejecutar todos los pasos indicados en:
 https://github.com/Factoria-F5-madrid/CRUD-django/
 
 El resultado que veremos por pantalla será la siguiente:
+
+![Interfaz del admin para libros](https://github.com/Factoria-F5-madrid/Tarea_CRUD_Django_NoeGuaman/blob/main/assets/interfaz-admin-libros.png?raw=true)
