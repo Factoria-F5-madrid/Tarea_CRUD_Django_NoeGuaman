@@ -192,3 +192,9 @@ La interfaz generada permite:
 - Buscar, filtrar y ordenar datos fácilmente.
 - Personalizar formularios, listas y secciones del panel mediante configuraciones en admin.py.
 
+## Parte 2: Aplicación CRUD y Django
+
+Tras ejecutar todos los pasos indicados en:
+https://github.com/Factoria-F5-madrid/CRUD-django/
+
+El resultado que veremos por pantalla será la siguiente:
