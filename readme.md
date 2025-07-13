@@ -121,7 +121,74 @@ Ejemplos:
 
 {{ nombre_usuario }} → mostraría el valor de la variable nombre_usuario en la plantilla
 ```
-### ¿Cuál es el flujo de datos entre un formulario HTML y la base de datos en Django?
+### 4. ¿Cuál es el flujo de datos entre un formulario HTML y la base de datos en Django?
+
+![Flujo de datos](https://github.com/Factoria-F5-madrid/Tarea_CRUD_Django_NoeGuaman/blob/main/assets/flujo-datos.png?raw=true)
+
+Cuando un usuario llena un formulario en una página web y hace clic en "Enviar", los datos se envían al servidor, donde Django los recibe. Esos datos llegan a una función llamada "vista",las vistas son funciones o clases en Django que se encargan de recibir una petición (como un formulario enviado) y devolver una respuesta. Luego, con esos datos, Django crea un nuevo objeto usando un modelo (que es como una plantilla de cómo deben guardarse los datos). Finalmente, ese objeto se guarda en la base de datos. 
+Después de guardar, Django puede mostrarle al usuario una página de confirmación o llevarlo a otra parte del sitio.
+
+### 5.  ¿Qué herramientas o comandos ofrece Django para facilitar el desarrollo de un CRUD, para qué es cada una? (Por ejemplo: startapp, makemigrations, migrate, runserver, ModelForm, admin, etc.) 
+Como ocurre en la mayoría de frameworks, Django incluye herramientas, automatizaciones y comandos que facilitan el desarrollo, especialmente de estructuras CRUD.
+
+Comandos que se ejecutan en todos los proyectos:
+- startproject: Sirve para crear la estructura básica de un nuevo proyecto en Django. Esto incluye la creación de una carpeta con el nombre del proyecto y dentro de ella, archivos de configuración y un módulo de administración. No crea una aplicación web en sí misma, sino un esqueleto sobre el cual construir. 
+- startapp: Sobre el esqueleto anterior, crea la estructura básica de una aplicación en Django. Aquí es donde se construyen los modelos, vistas, formularios y URLs necesarios para el CRUD.
+- makemigrations: Detecta los cambios en los modelos (por ejemplo, agregar un nuevo campo al modelo) y genera archivos de migración que describen cómo debe cambiar la base de datos.
+- migrate: Aplica las migraciones a la base de datos real, creando o modificando tablas para que coincidan con los modelos.
+- runserver: Inicia un servidor de desarrollo local para probar la aplicación en tiempo real mientras se desarrolla.
+- shell (python manage.py shell): Abre una consola interactiva para probar modelos, consultar datos y hacer operaciones CRUD directamente desde Python. Por ejemplo para probar una operación GET sin tener que escribir el HTML.
+
+Vistas genéricas (Class-Based Views): Django incluye vistas como ListView, CreateView, UpdateView, y DeleteView que permiten implementar los archivos que necesita para el CRUD rápidamente.
+- ListView: Muestra una lista de objetos.
+- DetailView: Muestra los detalles de un objeto específico.
+- CreateView: Permite la creación de un nuevo objeto.
+- UpdateView: Permite la actualización de un objeto existente.
+- DeleteView: Permite la eliminación de un objeto.
+  
+Como se puede ver la mayoría de los comandos que más se usan están orientados a administrar la base de datos y los archivos que necesita para el CRUD, que es de las mayores peculiaridades de Django.
+Algo muy importante de porque es un framework y tiene herramientas de tal:
+- Model: Define la estructura de la base de datos. Cada modelo representa una tabla y cada atributo una columna. Es lo más básico para crear el CRUD, ya que de ahí se genera toda la lógica de definición del tipo de datos y nombres para el JSON, por lo tanto hay que tenerla muy en cuenta para interactuar con las tablas.
+- ModelForm: Permite generar formularios automáticamente a partir de un modelo. Facilita las operaciones de crear y actualizar datos con validación y envío integrados.
+- admin: Django genera una interfaz de administración automática a partir de los modelos. Es una forma rápida de gestionar datos con operaciones CRUD sin tener que programar nada de frontend. También permite a los futuros propietarios de la aplicación tener bastante autogestión, incluso sin ninguna formación.
+- createsuperuser: Crea un usuario administrador para acceder al panel de administración (nombrado arriba) y gestionar los modelos registrados, entre otras cosas.
+  
+Estas herramientas ayudan a automatizar muchas tareas repetitivas, mantener el código organizado y desarrollar aplicaciones web robustas de forma más rápida.
 
 
-Cuando un usuario llena un formulario en una página web y hace clic en "Enviar", los datos se envían al servidor, donde Django los recibe. Esos datos llegan a una función llamada "vista",las vistas son funciones o clases en Django que se encargan de recibir una petición (como un formulario enviado) y devolver una respuesta. Luego, con esos datos, Django crea un nuevo objeto usando un modelo (que es como una plantilla de cómo deben guardarse los datos). Finalmente, ese objeto se guarda en la base de datos. Después de guardar, Django puede mostrarle al usuario una página de confirmación o llevarlo a otra parte del sitio.
+### 6. ¿Cómo funciona el Admin de Django?  
+
+El panel de administración de Django es una herramienta de interfaz web generada automáticamente a partir de los modelos definidos en el proyecto.
+Su objetivo es facilitar el trabajo de administradores y editores, permitiendo gestionar la base de datos sin necesidad de escribir código.
+
+¿Cómo funciona?
+1. Uso de modelos como base
+   
+- Django toma las clases definidas en el archivo models.py como base para crear el panel de administración.
+- Cada clase representa una tabla de la base de datos y define los campos que se van a administrar.
+
+2. Registro en el panel
+Para que un modelo aparezca en el panel de administración, debe registrarse en el archivo admin.py.
+
+Ejemplo:
+```
+from django.contrib import admin
+from .models import MiModelo
+admin.site.register(MiModelo)
+```
+
+3. Autenticación y permisos
+Django incluye un sistema de autenticación que permite controlar el acceso al panel.
+
+Algunas funcionalidades clave:
+- Solo los usuarios staff pueden ingresar al panel.
+- Se puede crear un superusuario con todos los permisos.
+- Es posible asignar permisos personalizados a cada usuario.
+
+4. Interfaz automática y personalizable
+   
+La interfaz generada permite:
+-  Agregar, editar, eliminar y ver registros de cualquier modelo.
+- Buscar, filtrar y ordenar datos fácilmente.
+- Personalizar formularios, listas y secciones del panel mediante configuraciones en admin.py.
+
