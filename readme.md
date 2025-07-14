@@ -75,10 +75,10 @@ Estructura básica de un proyecto Django
 ```
 mi_proyecto/
 ├── mi_proyecto/        # Configuración global
-├── mi_app/             # App individual (modelos, vistas, templates, etc.)
+├── mi_app/		# App individual (modelos, vistas, templates, etc.)
+|      ├── templates/archivo.html   
 |      ├── models.py
 |      ├── views.py
-|      ├── templates.py
 |      ├── urls.py
 ├── manage.py
 ```
@@ -94,7 +94,7 @@ El **modelo** en Django sigue siendo **modelo** (modelo.py):
 - Cada tipo de dato que debe ser almacenado se encuentra en una variable con ciertos parámetros.
 - Posee métodos para la gestión de los datos.
 
-La **vista** en Django se llama **plantilla/template** (views.py) :
+La **vista** en Django es la lógica de control (views.py) :
 
 - Se presenta en forma de funciones o clases en Python,
 - su propósito es determinar qué datos serán visualizados.
@@ -103,12 +103,15 @@ La **vista** en Django se llama **plantilla/template** (views.py) :
 - La vista también se encarga de tareas conocidas como el envío de correo electrónico, la autenticación con servicios externos y la validación de datos a través de formularios.	
 - La vista no tiene nada que ver con el estilo de presentación de los datos, sólo se encarga de los datos, la presentación es tarea de la plantilla.
 
-El **controlador** en Django se llama **vista** (templates.py):
+La **plantilla** en Django se llama **template** (archivos .html en templates/):
 
 - Es básicamente una página HTML con algunas etiquetas extras propias de Django, no solamente crea contenido en HTML (también XML, CSS, Javascript, CSV, etc).
 - La plantilla (Template) recibe los datos de la vista y luego los organiza para la presentación al navegador web
+  
+  _En MVC, la plantilla de Django es lo que tradicionalmente se considera la "vista"._
 
-Respecto a las **URLs** Django posee el control sobre la configuración de las rutas. Posee un mapeo de URLs que permite controlar el despliegue de las vistas apropiadas para la solicitud y pasar cualquier variable que la vista necesite para completar su trabajo, además permite que las rutas que maneje Django sean agradables y entendibles para el usuario.
+Respecto a las **URLs** (urls.py) Django posee el control sobre la configuración de las rutas. 
+- Posee un mapeo de URLs que permite controlar el despliegue de las vistas apropiadas para la solicitud y pasar cualquier variable que la vista necesite para completar su trabajo, además permite que las rutas que maneje Django sean agradables y entendibles para el usuario.
 
 
 ###  ¿Para qué se usa el signo “%%” en los templates?
